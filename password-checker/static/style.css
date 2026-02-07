@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(0, 0, 0);
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.menu {
+  position: fixed;
+  inset: 0;                 
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  gap: 28px;
+  text-align: center;
+}
+
+.menu button {
+  padding: 0px 14px;
+  width: 500px;
+  height: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 500px;
+  font-size: xx-large;
+  border: 1px solid #444;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.hidden { 
+    display: none; 
+}
+
+.appWindow {
+  width: min(900px, 92vw);
+  height: min(520px, 80vh);
+  background: #0e0e0e;
+  border: 1px solid #444;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.appTopBar {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #141414;
+  border-bottom: 1px solid #2a2a2a;
+  font-weight: 600;
+}
+
+.container { 
+    color: white; 
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.launcherTitle {
+  font-size: xxx-large;
+  text-align: center;
+  color: white;
+}
+
+#passwordInput {
+  flex: 1;
+  min-width: 320px;
+  height: 64px;
+  padding: 0 26px;
+  border-radius: 500px;
+  border: 1px solid #777;
+  background: rgba(255,255,255,0.03);
+  color: white;
+  outline: none;
+}
+
+#checkBtn {
+  height: 64px;
+  padding: 0 34px;
+  border-radius: 999px;
+  border: 1px solid #777;
+  background: #1f1f1f;
+  color: white;
+  cursor: pointer;
+}
+
+#checkBtn:hover {
+  background: darkblue;
+}
+
+.strengthText {
+  margin-top: 22px;
+}
