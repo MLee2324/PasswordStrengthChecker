@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <div class="menu">
+    <h1 class="launcherTitle">How secure is your password?</h1>
+    <button id="openApp">Password Strength Checker</button>
+  </div>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="appWindow">
+      <div class="appTopBar">
+        <div></div>
+      </div>
+
+      <div class="appBody">
+        <div class="container">
+          <div class="input-box">
+            <input id="passwordInput" type="password" placeholder="Enter a password..." />
+            <button id="checkBtn">Check</button>
+
+          </div>
+
+          <div class="strengthText">
+            <h2>Strength Meter: <span id="strengthText">—</span></h2>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
