@@ -113,14 +113,17 @@ function evaluatePassword() {
   if (score <= 1) 
   {
     strength.innerHTML = "weak";
+    strength.classList.add("weak");
   } 
   else if (score <= 3) 
   {
     strength.innerHTML = "okay";
+    strength.classList.add("okay");
   } 
   else 
   {
     strength.innerHTML = "strong";
+    strength.classList.add("strong");
   }
 }
 
