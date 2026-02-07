@@ -14,18 +14,20 @@
     <button id="openApp">Password Strength Checker</button>
   </div>
 
-  <div id="overlay" class="overlay hidden">
+  <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="appTitle">
     <div class="appWindow">
       <div class="appTopBar">
-        <div></div>
+        <div class="appTitle" id="appTitle">Password Strength Checker</div>
+        <button class="closeBtn" id="closeApp" aria-label="Close password checker">×</button>
       </div>
 
       <div class="appBody">
         <div class="container">
           <div class="input-box">
-            <input id="passwordInput" type="password" placeholder="Enter a password..." />
-            <button id="checkBtn">Check</button>
-            <p id="message">Password is <span id="strength"></span></p>
+            <label for="passwordInput" class="inputLabel">Password</label>
+            <input id="passwordInput" type="password" placeholder="Enter a password..." autocomplete="new-password" />
+            <button id="checkPass">Show password</button>
+            <p id="message" aria-live="polite">Password is <span id="strength"></span></p>
           </div>
         
           <div class="checkpointbox">
@@ -45,17 +47,14 @@
               <img src="{{ url_for('static', filename='x.png') }}"
                   class="checkpointIcon"
                   data-state="off">
-              <span>A longer password</span>
+              <span>12+ characters</span>
             </div>
             <div class="checkpoint" id="cpRepeated">
               <img src="{{ url_for('static', filename='x.png') }}"
                   class="checkpointIcon"
                   data-state="off">
               <span>A less obvious pattern</span>
-            <div class="showpassword">
-            <button id="checkPass">Show password</button>
-          </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
