@@ -46,14 +46,6 @@ closeApp.addEventListener("click", () => {
   overlay.classList.add("hidden");
   resetAll();
 });
-//when clicked out of window exit out of window
-overlay.addEventListener("click", (e) => {
-  if (e.target === overlay)
-  {
-      overlay.classList.add("hidden");
-      resetAll();
-  }
-});
 
 //when escape button is pressed exit out of window
 document.addEventListener('keydown', function(event) {
