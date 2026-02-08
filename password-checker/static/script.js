@@ -51,22 +51,43 @@ function renderHistory() {
   });
 }
 
-function estimateCrackTime(score, length) {
-  if (score <= 1) return "~seconds";
-  if (score === 2) return "~minutes";
-  if (score === 3) return "~hours";
-  return "~years";
+function getCharsetSize(pw) {
+  let size = 0;
+  if (/[a-z]/.test(pw)) size += 26;
+  if (/[A-Z]/.test(pw)) size += 26;
+  if (/[0-9]/.test(pw)) size += 10;
+  if (/[^A-Za-z0-9]/.test(pw)) size += 33;
+  if (size === 0) size = 1;
+  return size;
 }
 
-function addToHistory(score, length, strengthText) {
+function formatSeconds(seconds) {
+  if (seconds < 1) return "< 1 second";
+  if (seconds < 60) return Math.round(seconds) + " seconds";
+  if (seconds < 3600) return Math.round(seconds / 60) + " minutes";
+  if (seconds < 86400) return Math.round(seconds / 3600) + " hours";
+  if (seconds < 31536000) return Math.round(seconds / 86400) + " days";
+  return "years+";
+}
+
+function estimateCrackTime(pw, isCommon, hasRepeatingPattern) {
+  if (isCommon) return "< 1 second";
+  if (hasRepeatingPattern) return "~seconds";
+
+  const charset = getCharsetSize(pw);
+  const guesses = Math.pow(charset, pw.length) / 2;
+  const guessesPerSecond = 10000000000;
+
+  const seconds = guesses / guessesPerSecond;
+  return formatSeconds(seconds);
+}
+
+function addToHistory(length, strengthText, crackTime) {
   const time = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit"
   });
 
-  const crackTime = estimateCrackTime(score, length);
-
-  // NOTE: We DO NOT store the password, only metadata (time/length/strength/estimate)
   history.unshift(`${time} — ${length} chars — ${strengthText} — ${crackTime}`);
 
   if (history.length > 5) {
@@ -97,7 +118,6 @@ closeApp.addEventListener("click", () => {
   resetAll();
 });
 
-// Optional: close modal when clicking outside the window
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) {
     overlay.classList.add("hidden");
@@ -105,7 +125,6 @@ overlay.addEventListener("click", (e) => {
   }
 });
 
-// close modal on ESC (only if open)
 document.addEventListener("keydown", function(event) {
   if (event.key === "Escape") {
     if (!overlay.classList.contains("hidden")) {
@@ -141,23 +160,15 @@ function evaluatePassword() {
   const longEnough = pw.length >= minLength;
 
   const pwLower = pw.toLowerCase();
-  let isCommon = false;
-
+  const isCommon = commonPasswords.includes(pwLower);
   const hasRepeatingPattern =
     /(.)\1{2,}/.test(pw) || /(?:abc|123|qwerty)/i.test(pw);
-
-  if (commonPasswords.includes(pwLower)) {
-    isCommon = true;
-  } else {
-    isCommon = false;
-  }
 
   setCheckpoint(cpCase, hasLower && hasUpper);
   setCheckpoint(cpSymbol, hasSymbol);
   setCheckpoint(cpLength, longEnough);
   setCheckpoint(cpRepeated, !isCommon && !hasRepeatingPattern);
 
-  // Strength score
   let score = 0;
   if (hasLower && hasUpper) score++;
   if (hasSymbol) score++;
@@ -167,13 +178,24 @@ function evaluatePassword() {
   strength.classList.remove("weak", "okay", "strong");
 
   let strengthText = "";
+  if (score <= 1) {
+    strengthText = "weak";
+    strength.innerHTML = strengthText;
+    strength.classList.add("weak");
+  } else if (score <= 3) {
+    strengthText = "okay";
+    strength.innerHTML = strengthText;
+    strength.classList.add("okay");
+  } else {
+    strengthText = "strong";
+    strength.innerHTML = strengthText;
+    strength.classList.add("strong");
+  }
 
-
-  // Add to history (NO password stored)
-  addToHistory(score, pw.length, strengthText);
+  const crackTime = estimateCrackTime(pw, isCommon, hasRepeatingPattern);
+  addToHistory(pw.length, strengthText, crackTime);
 }
 
 pass.addEventListener("input", evaluatePassword);
 
-// Start with empty history
 renderHistory();
