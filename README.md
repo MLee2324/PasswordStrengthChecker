@@ -88,11 +88,11 @@ Potential misuse includes:
 
 - Users are encouraged to use this tool to learn about password hygiene, not to test or attack real accounts.
 
-### License
+## License
 
 This project is licensed under the terms described in the LICENSE file included in this repository.
 
-### Acknowledgments
+## Acknowledgments
 
 This project was developed as part of a university security and ethics assignment.
 AI tools (ChatGPT) were used for debugging assistance and code review, similar to collaborating with a peer.
