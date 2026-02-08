@@ -52,7 +52,7 @@ python app.py
 
 ---
 
-## Limitations & Warnings
+**### Limitations & Warnings**
 
 - This tool does not guarantee password security
 - Crack-time estimates assume a brute-force attacker and do not account for:
@@ -67,7 +67,7 @@ Passwords are not stored, but users should still avoid entering real or sensitiv
 
 This tool should not be used to secure critical accounts or sensitive systems
 
-## Ethical Considerations & Responsible Use
+### **Ethical Considerations & Responsible Use**
 
 This project is intended strictly for educational and awareness purposes.
 
@@ -87,11 +87,11 @@ Potential misuse includes:
 
 - Users are encouraged to use this tool to learn about password hygiene, not to test or attack real accounts.
 
-## License
+### **License**
 
 This project is licensed under the terms described in the LICENSE file included in this repository.
 
-## Acknowledgments
+### **Acknowledgments**
 
 This project was developed as part of a university security and ethics assignment.
 AI tools (ChatGPT) were used for debugging assistance and code review, similar to collaborating with a peer.
