@@ -49,3 +49,47 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python app.py
+
+## Limitations & Warnings
+
+- This tool does not guarantee password security
+- Crack-time estimates assume a brute-force attacker and do not account for:
+- Rate limiting
+- Multi-factor authentication
+- Hashing algorithms
+- System-specific protections
+
+The checker may give a false sense of security if used without understanding its limitations
+
+Passwords are not stored, but users should still avoid entering real or sensitive passwords
+
+This tool should not be used to secure critical accounts or sensitive systems
+
+## Ethical Considerations & Responsible Use
+
+This project is intended strictly for educational and awareness purposes.
+
+Potential misuse includes:
+
+- Modifying the tool to assist in password cracking
+
+- Using estimates to target weak passwords
+
+- To reduce misuse:
+
+- The application never stores or transmits passwords
+
+- Only metadata (length, strength, estimated time) is shown locally
+
+- The design emphasizes user education over exploitation
+
+- Users are encouraged to use this tool to learn about password hygiene, not to test or attack real accounts.
+
+## License
+
+This project is licensed under the terms described in the LICENSE file included in this repository.
+
+## Acknowledgments
+
+This project was developed as part of a university security and ethics assignment.
+AI tools (ChatGPT) were used for debugging assistance and code review, similar to collaborating with a peer.
