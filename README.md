@@ -44,7 +44,6 @@ The crack-time estimate is an approximation meant to provide intuition, not an e
 
 ```bash
 git clone https://github.com/your-username/password-strength-checker.git
-cd password-strength-checker
 chmod +x setup.sh run.sh
 ./setup.sh
 ./run.sh
