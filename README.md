@@ -45,10 +45,9 @@ The crack-time estimate is an approximation meant to provide intuition, not an e
 ```bash
 git clone https://github.com/your-username/password-strength-checker.git
 cd password-strength-checker
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python app.py
+chmod +x setup.sh run.sh
+./setup.sh
+./run.sh
 ```
 
 ---
